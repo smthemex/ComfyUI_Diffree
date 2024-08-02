@@ -70,7 +70,7 @@ My ComfyUI node list：
 
 Citation
 ------
-MOpenGVLab/Diffree
+OpenGVLab/Diffree
 ```
 @article{zhao2024diffree,
   title={Diffree: Text-Guided Shape Free Object Inpainting with Diffusion Model},
