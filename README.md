@@ -15,6 +15,21 @@ Diffree: Text-Guided Shape Free Object Inpainting with Diffusion Model
   ```
 2.requirements  
 ----
+
+if miss K_diffusion...
+
+```
+pip install -r requirements.txt
+
+```
+如果是便携包的，提示缺少K-diffusion需要在comfyUI/python_embeded目录下pip安装需求文件
+if using portable standalone build for Windows 'comfyUI, you need in comfyUI/python_embeded
+
+```
+python pip install -m -r requirements.txt
+
+```
+
 Based on the SD model, ComfyUI users basically do not need to install any requirement libraries。  
 基于sd的模型，comfyUI用户，基本上不用装任何需求库
 
