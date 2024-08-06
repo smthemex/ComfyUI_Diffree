@@ -1,3 +1,6 @@
 pytorch-lightning
--e git+https://github.com/crowsonkb/k-diffusion.git@v0.0.16#egg=k-diffusion
+torchdiffeq
+dctorch
+jsonmerge
+clean-fid
 -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
