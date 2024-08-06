@@ -3,4 +3,5 @@ torchdiffeq
 dctorch
 jsonmerge
 clean-fid
+clip-anytorch
 -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
