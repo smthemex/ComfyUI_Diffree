@@ -5,6 +5,13 @@ Diffree: Text-Guided Shape Free Object Inpainting with Diffusion Model
 "Diffree" From: [Diffree](https://github.com/OpenGVLab/Diffree)
 ----
 
+Update
+---
+2024/08/06   
+--comfyUI默认的K_diffusion 会影响K的导入（主要是影响便携包，不影响安装包），所以将K_diffusion直接整合进插件，避免导入失败，K_diffusion 需要安装的几个单独的库，请查看更新后的requirements.txt   
+--The default K_diffusion of ComfyUI will affect the import of K (mainly affecting the portable package, not the installation package), so K_diffusion will be directly integrated into the node to avoid import failure. There are several separate libraries that need to be installed for K_diffusion, please refer to the updated requirements. txt .  
+
+
 1.Installation
 -----
   In the ./ComfyUI /custom_node directory, run the following:   
@@ -16,7 +23,7 @@ Diffree: Text-Guided Shape Free Object Inpainting with Diffusion Model
 2.requirements  
 ----
 
-if miss K_diffusion...   
+if  K_diffusion...  missing  module...
 
 ```
 pip install -r requirements.txt
@@ -32,7 +39,7 @@ python -m pip install -r requirements.txt
 或者 or: python pip install -r requirements.txt --target "you path/comfyUI/python_embeded/Lib/site-packages"  
 
 Based on the SD model, ComfyUI users basically do not need to install any requirement libraries。  
-基于sd的模型，comfyUI用户，基本上不用装任何需求库  
+基于sd的模型，comfyUI安装版的用户，基本上不用装任何需求库  
 
 If a module is missing, please open 'nou_need-requirements.txt'  
 如果缺失库，请打开nou_need_requirements.txt文件看你少了啥
