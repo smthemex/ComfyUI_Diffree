@@ -7,7 +7,7 @@ import sys
 import os
 from tqdm.auto import trange
 import einops
-import k_diffusion as K
+from . import k_diffusion as K
 import numpy as np
 import torch
 import torch.nn as nn
