@@ -24,11 +24,14 @@ Update
 ----
 
 if  K_diffusion...  missing  module...
+check “no_need_requirements.txt”,pip missing module.
+K_diffusion 需求的库文件也在no_need_requirements.txt 里，缺啥装啥
 
 ```
 pip install -r requirements.txt
 
 ```
+
 如果是便携包的，提示缺少K-diffusion需要在comfyUI/python_embeded目录下，打开CMD pip安装需求文件;    
 if using portable standalone build for Windows 'comfyUI, you need in comfyUI/python_embeded;   
 
