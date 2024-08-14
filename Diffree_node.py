@@ -229,7 +229,7 @@ class Diffree_Model_Loader:
             }
         }
     
-    RETURN_TYPES = ("MODEL", "MODEL","MODEL",)
+    RETURN_TYPES = ("MODEL","MODEL","MODEL", )
     RETURN_NAMES = ("model", "model_wrap","model_wrap_cfg",)
     FUNCTION = "main_loader"
     CATEGORY = "Diffree"
@@ -246,9 +246,9 @@ class Diffree_Model_Loader:
         model.eval().cuda()
         model_wrap = CompVisDenoiser(model)
         model_wrap_cfg = CFGDenoiser(model_wrap)
-        return (model, model_wrap,model_wrap_cfg)
+        return (model,model_wrap,model_wrap_cfg,)
 
-
+@torch.no_grad()
 def generate(
         model,
         model_wrap,
@@ -271,12 +271,6 @@ def generate(
     text_cfg_scale = round(random.uniform(6.0, 9.0), ndigits=2) if randomize_cfg else text_cfg_scale
     image_cfg_scale = round(random.uniform(1.2, 1.8), ndigits=2) if randomize_cfg else image_cfg_scale
     
-    #width, height = input_image.size  #图片裁切,已用其他功能替换
-    # factor = resolution / max(width, height)
-    # factor = math.ceil(min(width, height) * factor / 64) * 64 / min(width, height)
-    # width = int((width * factor) // 64) * 64
-    # height = int((height * factor) // 64) * 64
-    #input_image = ImageOps.fit(image, (width, height), method=Image.Resampling.LANCZOS)
     input_image_copy = image
     
     if instruction == "":
@@ -311,12 +305,8 @@ def generate(
         
         x_0 = model.decode_first_stage(z_0)
         
-        if model.first_stage_downsample:
-            x_1 = nn.functional.interpolate(z_1, size=(height, width), mode="bilinear", align_corners=False)
-            x_1 = torch.where(x_1 > 0, 1, -1)  # Thresholding step
-        else:
-            x_1 = model.decode_first_stage(z_1)
-        
+        x_1 = nn.functional.interpolate(z_1, size=(height, width), mode="bilinear", align_corners=False)
+        x_1 = torch.where(x_1 > 0, 1, -1)  # Thresholding step
         x_0 = torch.clamp((x_0 + 1.0) / 2.0, min=0.0, max=1.0)
         x_1 = torch.clamp((x_1 + 1.0) / 2.0, min=0.0, max=1.0)
         x_0 = 255.0 * rearrange(x_0, "1 c h w -> h w c")
@@ -325,30 +315,6 @@ def generate(
         edited_image = Image.fromarray(x_0.type(torch.uint8).cpu().numpy())
         edited_mask = Image.fromarray(x_1.type(torch.uint8).cpu().numpy())
         
-        # image_video_path = None #no need
-        # if not weather_close_video:
-        #     image_video = []
-        #
-        #     for i in range(0, len(image_list), decode_image_batch):
-        #         if i + decode_image_batch < len(image_list):
-        #             tmp_image_list = image_list[i:i + decode_image_batch]
-        #         else:
-        #             tmp_image_list = image_list[i:]
-        #         tmp_image_list = model.decode_first_stage(tmp_image_list)
-        #         tmp_image_list = torch.clamp((tmp_image_list + 1.0) / 2.0, min=0.0, max=1.0)
-        #         tmp_image_list = 255.0 * rearrange(tmp_image_list, "b c h w -> b h w c")
-        #         tmp_image_list = tmp_image_list.type(torch.uint8).cpu().numpy()
-        #         # image list to image
-        #         for image in tmp_image_list:
-        #             image_video.append(image)
-                    
-            # image_file_prefix = ''.join(random.choice("0123456789") for _ in range(6))  #图像生成过程的渐变视频,做demo可以,实际好像用处不大,先取消
-            # image_video_path = os.path.join(folder_paths.input_directory, f"image_{image_file_prefix}_temp.mp4")
-            # #image_video_path = "image.mp4"
-            # fps = 30
-            # with imageio.get_writer(image_video_path, fps=fps) as video:
-            #     for image in image_video:
-            #         video.append_data(image)
         
         # 对edited_mask做膨胀
         edited_mask_copy = edited_mask.copy()
@@ -386,17 +352,6 @@ def generate(
         
         mask_img=Image.fromarray((m_img * 255).astype(np.uint8)).convert('RGB')
         
-        #print(mix_image,mask_img,mix_result_with_rgb_mask)
-        
-        # #mask_video_path = "mask.mp4"  # no need
-        # fps = 30
-        # with imageio.get_writer(mask_video_path, fps=fps) as video:
-        #     for image in mask_list:
-        #         video.append_data(image)
-              
-        # return [int(seed), text_cfg_scale, image_cfg_scale, edited_image, mix_image, edited_mask_copy, mask_video_path,
-        #         image_video_path, input_image_copy, mix_result_with_red_mask]
-        
         return mix_image, mask_img,mix_result_with_rgb_mask
 
 
@@ -430,7 +385,7 @@ class Diffree_Sampler:
     FUNCTION = "df_sampler"
     CATEGORY = "Diffree"
     
-    def df_sampler(self, image, model, model_wrap,model_wrap_cfg, prompt, randomize_seed,seed, steps,randomize_cfg, text_cfg,img_cfg,width,height,rgb_mode,batch_size,):
+    def df_sampler(self, image, model,model_wrap, model_wrap_cfg, prompt, randomize_seed,seed, steps,randomize_cfg, text_cfg,img_cfg,width,height,rgb_mode,batch_size,):
         image=nomarl_upscale_to_pil(image,width,height)
         mix_image_list,mask_img_list,mix_result_with_rgb_mask_list=[],[],[]
         for i in range(batch_size):
