@@ -9,7 +9,6 @@ model:
     timesteps: 1000
     first_stage_key: edited
     cond_stage_key: edit
-    first_stage_downsample: True
     image_size: 16
     channels: 4
     cond_stage_trainable: false   # Note: different from the one we trained before
