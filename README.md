@@ -1,19 +1,13 @@
 Youu can using Diffree in ComfyUI 
 ---
-Diffree: Text-Guided Shape Free Object Inpainting with Diffusion Model
+[Diffree](https://github.com/OpenGVLab/Diffree/tree/main): Text-Guided Shape Free Object Inpainting with Diffusion Model
 
-"Diffree" From: [Diffree](https://github.com/OpenGVLab/Diffree)
 ----
 
 Update
----
-2024/08/14   
---同步diffree官方的代码变动，主要是删除了first_stage_downsample相关代码；   
---Synchronize the official code changes of diffree, mainly deleting the code related to first_dage_rownsample；   
-
-2024/08/06   
---comfyUI默认的K_diffusion 会影响K的导入（主要是影响便携包，不影响安装包），所以将K_diffusion直接整合进插件，避免导入失败，K_diffusion 需要安装的几个单独的库，请查看更新后的requirements.txt   
---The default K_diffusion of ComfyUI will affect the import of K (mainly affecting the portable package, not the installation package), so K_diffusion will be directly integrated into the node to avoid import failure. There are several separate libraries that need to be installed for K_diffusion, please refer to the updated requirements. txt .  
+----
+**2024/10/30**
+* 优化一些代码，但是还有4G左右的占用一直没有被清理，有空再搞吧。因为推理用的autocast("cuda")，所以有些较旧的cuda卡可能会OOM
 
 
 1.Installation
@@ -62,7 +56,7 @@ If a module is missing, please open 'nou_need-requirements.txt'
 ```
 
 3.2 vae  
-you can try some one
+模型内置，并不需要 you can try some one
 
 4 using tips
 ---
@@ -72,31 +66,8 @@ you can try some one
 5 Example
 ----
  Text-Guided Shape Free Object Inpainting  常规文生内绘图演示。    
-![](https://github.com/smthemex/ComfyUI_Diffree/blob/main/example/example.png)
+![](https://github.com/smthemex/ComfyUI_Diffree/blob/main/example.png)
 
-
-My ComfyUI node list：
------
-1、ParlerTTS node:[ComfyUI_ParlerTTS](https://github.com/smthemex/ComfyUI_ParlerTTS)     
-2、Llama3_8B node:[ComfyUI_Llama3_8B](https://github.com/smthemex/ComfyUI_Llama3_8B)      
-3、HiDiffusion node：[ComfyUI_HiDiffusion_Pro](https://github.com/smthemex/ComfyUI_HiDiffusion_Pro)   
-4、ID_Animator node： [ComfyUI_ID_Animator](https://github.com/smthemex/ComfyUI_ID_Animator)       
-5、StoryDiffusion node：[ComfyUI_StoryDiffusion](https://github.com/smthemex/ComfyUI_StoryDiffusion)  
-6、Pops node：[ComfyUI_Pops](https://github.com/smthemex/ComfyUI_Pops)   
-7、stable-audio-open-1.0 node ：[ComfyUI_StableAudio_Open](https://github.com/smthemex/ComfyUI_StableAudio_Open)        
-8、GLM4 node：[ComfyUI_ChatGLM_API](https://github.com/smthemex/ComfyUI_ChatGLM_API)   
-9、CustomNet node：[ComfyUI_CustomNet](https://github.com/smthemex/ComfyUI_CustomNet)           
-10、Pipeline_Tool node :[ComfyUI_Pipeline_Tool](https://github.com/smthemex/ComfyUI_Pipeline_Tool)    
-11、Pic2Story node :[ComfyUI_Pic2Story](https://github.com/smthemex/ComfyUI_Pic2Story)   
-12、PBR_Maker node:[ComfyUI_PBR_Maker](https://github.com/smthemex/ComfyUI_PBR_Maker)      
-13、ComfyUI_Streamv2v_Plus node:[ComfyUI_Streamv2v_Plus](https://github.com/smthemex/ComfyUI_Streamv2v_Plus)   
-14、ComfyUI_MS_Diffusion node:[ComfyUI_MS_Diffusion](https://github.com/smthemex/ComfyUI_MS_Diffusion)   
-15、ComfyUI_AnyDoor node: [ComfyUI_AnyDoor](https://github.com/smthemex/ComfyUI_AnyDoor)  
-16、ComfyUI_Stable_Makeup node: [ComfyUI_Stable_Makeup](https://github.com/smthemex/ComfyUI_Stable_Makeup)  
-17、ComfyUI_EchoMimic node:  [ComfyUI_EchoMimic](https://github.com/smthemex/ComfyUI_EchoMimic)   
-18、ComfyUI_FollowYourEmoji node: [ComfyUI_FollowYourEmoji](https://github.com/smthemex/ComfyUI_FollowYourEmoji)   
-19、ComfyUI_Diffree node: [ComfyUI_Diffree](https://github.com/smthemex/ComfyUI_Diffree)  
-20、ComfyUI_FoleyCrafter node: [ComfyUI_FoleyCrafter](https://github.com/smthemex/ComfyUI_FoleyCrafter)
 
 Citation
 ------
