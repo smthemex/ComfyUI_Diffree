@@ -1,0 +1,281 @@
+{
+  "last_node_id": 6,
+  "last_link_id": 5,
+  "nodes": [
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": {
+        "0": 3106,
+        "1": -2137
+      },
+      "size": {
+        "0": 315,
+        "1": 314
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "1 (1).jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 1,
+      "type": "Diffree_Model_Loader",
+      "pos": {
+        "0": 3107,
+        "1": -1720
+      },
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "DIFFREE_MODEL",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Diffree_Model_Loader"
+      },
+      "widgets_values": [
+        "diffree-step=000010999.ckpt",
+        "none"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "Diffree_Sampler",
+      "pos": {
+        "0": 3533,
+        "1": -2043
+      },
+      "size": {
+        "0": 400,
+        "1": 380
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "name": "pipe",
+          "type": "DIFFREE_MODEL",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "mask",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "rgb_mask",
+          "type": "IMAGE",
+          "links": [
+            5
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Diffree_Sampler"
+      },
+      "widgets_values": [
+        "reflective sunglasses",
+        false,
+        1986156695,
+        "randomize",
+        20,
+        false,
+        7.5,
+        1.5,
+        512,
+        512,
+        "red",
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "type": "SaveImage",
+      "pos": {
+        "0": 4062,
+        "1": -1752
+      },
+      "size": {
+        "0": 315,
+        "1": 270
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "SaveImage",
+      "pos": {
+        "0": 4415,
+        "1": -1758
+      },
+      "size": {
+        "0": 315,
+        "1": 270
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 5
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "SaveImage",
+      "pos": {
+        "0": 4069,
+        "1": -2180
+      },
+      "size": {
+        "0": 300.6645812988281,
+        "1": 358.3944091796875
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      1,
+      "DIFFREE_MODEL"
+    ],
+    [
+      2,
+      3,
+      0,
+      2,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      2,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      2,
+      1,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      2,
+      2,
+      6,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.922959981770655,
+      "offset": [
+        -2957.90236362756,
+        2268.9858409701014
+      ]
+    }
+  },
+  "version": 0.4
+}
