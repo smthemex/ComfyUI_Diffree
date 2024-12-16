@@ -9,9 +9,7 @@ transformers==4.19.2
 tqdm==4.66.2
 gradio==3.50.2
 openai==1.12.0
-opencv-python
 einops==0.3.0
-omegaconf==2.1.1
 -e git+https://github.com/crowsonkb/k-diffusion.git@v0.0.16#egg=k-diffusion
 -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
 imageio==2.9.0
@@ -28,7 +26,6 @@ jsonmerge
 kornia
 Pillow
 safetensors
-scikit-image
 scipy
 torch>=2.1
 torchdiffeq

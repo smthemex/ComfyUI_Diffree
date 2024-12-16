@@ -4,4 +4,7 @@ dctorch
 jsonmerge
 clean-fid
 clip-anytorch
+omegaconf==2.1.1
+scikit-image
+opencv-python
 -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
