@@ -4,4 +4,5 @@ dctorch
 jsonmerge
 clean-fid
 clip-anytorch
+omegaconf
 -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
