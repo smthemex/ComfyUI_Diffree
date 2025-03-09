@@ -2,7 +2,7 @@
 name = "comfyui_diffree"
 description = "using diffree: Text-Guided Shape Free Object Inpainting with Diffusion Model"
 version = "1.0.0"
-license = "LICENSE"
+license = { file = "LICENSE" }
 
 [project.urls]
 Repository = "https://github.com/smthemex/ComfyUI_Diffree"
